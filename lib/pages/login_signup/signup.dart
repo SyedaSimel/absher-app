@@ -47,13 +47,13 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Full Name",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.028),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
                         'assets/icons/user_icon.svg',
-                        width: screenWidth * 0.03,
-                        height: screenWidth * 0.03,
+                        width: screenWidth * 0.02,
+                        height: screenWidth * 0.02,
                       ),
                     ),
                   ),
@@ -72,15 +72,11 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Email Address",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.028),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        '@',
-                        style: TextStyle(
-                            fontSize: screenWidth * 0.04,
-                            color:const Color.fromARGB(255, 126, 126, 126),
-                            fontWeight: FontWeight.w400),
+                      child: SvgPicture.asset(
+                        'assets/icons/@_icon.svg',
                       ),
                     ),
                   ),
@@ -99,13 +95,13 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Phone",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.028),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
                         'assets/icons/phone_icon.svg',
-                        width: screenWidth * 0.03,
-                        height: screenWidth * 0.03,
+                        width: screenWidth * 0.02,
+                        height: screenWidth * 0.02,
                       ),
                     ),
                   ),
@@ -124,13 +120,13 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Address",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.028),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
                         'assets/icons/pin_icon.svg',
-                        width: screenWidth * 0.03,
-                        height: screenWidth * 0.03,
+                        width: screenWidth * 0.02,
+                        height: screenWidth * 0.02,
                       ),
                     ),
                   ),
@@ -149,7 +145,7 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Password",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.028),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
@@ -162,20 +158,20 @@ class SignupScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: screenHeight * 0.02),
-              RadioListTile<String>(
-                title: Text(
-                  "By Signing up, you agree to terms and conditions.",
-                  style: GoogleFonts.montserrat(
-                    fontSize: screenWidth * 0.028,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                value: "agree",
-                groupValue: selectedValue,
-                onChanged: (String? value) {
-                  selectedValue = value;
-                },
-              ),
+              // RadioListTile<String>(
+              //   title: Text(
+              //     "By Signing up, you agree to terms and conditions.",
+              //     style: GoogleFonts.montserrat(
+              //       fontSize: screenWidth * 0.028,
+              //       fontWeight: FontWeight.w500,
+              //     ),
+              //   ),
+              //   value: "agree",
+              //   groupValue: selectedValue,
+              //   onChanged: (String? value) {
+              //     selectedValue = value;
+              //   },
+              // ),
               InkWell(
                 onTap: () {},
                 child: Container(

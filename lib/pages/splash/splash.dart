@@ -1,5 +1,5 @@
+import "package:absher_flutter/pages/login_signup/signin.dart";
 import "package:flutter/material.dart";
-import 'package:absher_flutter/pages/login_signup/signin.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,10 +12,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => SigninScreen()),
+        MaterialPageRoute(builder: (context) => const SigninScreen()),
       );
     });
   }

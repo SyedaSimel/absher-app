@@ -1,3 +1,4 @@
+import 'package:absher_flutter/pages/homepage/home_screen.dart';
 import 'package:absher_flutter/pages/login_signup/signup.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -44,14 +45,14 @@ class SigninScreen extends StatelessWidget {
                             color: Color.fromARGB(1, 126, 126, 126), width: 1)),
                     hintText: "Phone",
                     hintStyle: TextStyle(
-                      fontSize: screenWidth * 0.025,
+                      fontSize: screenWidth * 0.035,
                     ),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
                         'assets/icons/phone_icon.svg',
-                        width: screenWidth * 0.03,
-                        height: screenWidth * 0.03,
+                        width: screenWidth * 0.02,
+                        height: screenWidth * 0.02,
                       ),
                     ),
                   ),
@@ -70,35 +71,38 @@ class SigninScreen extends StatelessWidget {
                             color: Color.fromARGB(1, 126, 126, 126), width: 1)),
                     hintText: "Password",
                     hintStyle: TextStyle(
-                      fontSize: screenWidth * 0.025,
+                      fontSize: screenWidth * 0.035,
                     ),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
                         'assets/icons/lock_icon.svg',
-                        width: screenWidth * 0.03,
-                        height: screenWidth * 0.03,
+                        width: screenWidth * 0.02,
+                        height: screenWidth * 0.02,
                       ),
                     ),
                   ),
                 ),
               ),
-              RadioListTile<String>(
-                title: Text(
-                  'Remember me',
-                  style: GoogleFonts.montserrat(
-                      fontSize: screenWidth * 0.030,
-                      fontWeight: FontWeight.w400),
-                ),
-                value: "",
-                groupValue: selectedValue,
-                onChanged: (value) {},
-              ),
+              // RadioListTile<String>(
+              //   title: Text(
+              //     'Remember me',
+              //     style: GoogleFonts.montserrat(
+              //         fontSize: screenWidth * 0.030,
+              //         fontWeight: FontWeight.w400),
+              //   ),
+              //   value: "",
+              //   groupValue: selectedValue,
+              //   onChanged: (value) {},
+              // ),
               SizedBox(
                 height: screenHeight * 0.02,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                },
                 child: Container(
                   height: screenHeight * 0.07,
                   width: screenWidth * 0.88,
