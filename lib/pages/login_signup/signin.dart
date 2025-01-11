@@ -23,36 +23,40 @@ class SigninScreen extends StatelessWidget {
             children: <Widget>[
               Image.asset(
                 'assets/images/logo.png',
-                height: screenHeight * 0.12,
-                width: screenWidth * 0.3,
+                height: screenHeight * 0.14,
+                width: screenWidth * 0.6,
               ),
-              SizedBox(height: screenHeight * 0.03),
+              SizedBox(height: 20),
               Text("Sign in to continue",
                   style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w600,
-                      fontSize: screenWidth * 0.025,
+                      fontSize: screenWidth * 0.045,
                       color: const Color.fromARGB(255, 39, 57, 100))),
               SizedBox(
-                height: screenHeight * 0.03,
+                height: 15,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(49.0),
-                        borderSide: const BorderSide(
-                            color: Color.fromARGB(1, 126, 126, 126), width: 1)),
+                      borderRadius: BorderRadius.circular(49.0),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(1, 126, 126, 126),
+                        width: 1,
+                      ),
+                    ),
                     hintText: "Phone",
                     hintStyle: TextStyle(
-                      fontSize: screenWidth * 0.035,
+                      fontSize: screenWidth * 0.040,
                     ),
                     prefixIcon: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(
+                          12.0), // Padding for the icon itself
                       child: SvgPicture.asset(
                         'assets/icons/phone_icon.svg',
-                        width: screenWidth * 0.02,
-                        height: screenWidth * 0.02,
+                        width: screenWidth * 0.03,
+                        height: screenWidth * 0.03,
                       ),
                     ),
                   ),
@@ -71,14 +75,14 @@ class SigninScreen extends StatelessWidget {
                             color: Color.fromARGB(1, 126, 126, 126), width: 1)),
                     hintText: "Password",
                     hintStyle: TextStyle(
-                      fontSize: screenWidth * 0.035,
+                      fontSize: screenWidth * 0.040,
                     ),
                     prefixIcon: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: SvgPicture.asset(
                         'assets/icons/lock_icon.svg',
-                        width: screenWidth * 0.02,
-                        height: screenWidth * 0.02,
+                        width: screenWidth * 0.03,
+                        height: screenWidth * 0.03,
                       ),
                     ),
                   ),
@@ -104,8 +108,8 @@ class SigninScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => HomeScreen()));
                 },
                 child: Container(
-                  height: screenHeight * 0.07,
-                  width: screenWidth * 0.88,
+                  height: 50,
+                  width: screenWidth * 0.9,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [
@@ -122,14 +126,14 @@ class SigninScreen extends StatelessWidget {
                       'Log in',
                       style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.w600,
-                          fontSize: screenWidth * 0.03,
+                          fontSize: screenWidth * 0.05,
                           color: Colors.white),
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: screenHeight * 0.02,
+                height: 40,
               ),
               InkWell(
                 onTap: () {},
@@ -137,16 +141,16 @@ class SigninScreen extends StatelessWidget {
                   'Forgot Password?',
                   style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w600,
-                      fontSize: screenWidth * 0.03,
+                      fontSize: screenWidth * 0.040,
                       color: Colors.purple),
                 ),
               ),
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: 20),
               Text(
                 'Log in with',
                 style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w500,
-                    fontSize: screenWidth * 0.025,
+                    fontSize: screenWidth * 0.035,
                     color: const Color.fromARGB(255, 126, 126, 126)),
               ),
               SizedBox(
@@ -155,7 +159,7 @@ class SigninScreen extends StatelessWidget {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  height: screenHeight * 0.07,
+                  height: 50,
                   width: screenWidth * 0.88,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 66, 103, 178),
@@ -167,7 +171,7 @@ class SigninScreen extends StatelessWidget {
                       SvgPicture.asset(
                         'assets/icons/facebook_icon.svg',
                         width: screenWidth * 0.04,
-                        height: screenWidth * 0.04,
+                        height: 27,
                       ),
                       SizedBox(
                         width: screenWidth * 0.03,
@@ -176,7 +180,7 @@ class SigninScreen extends StatelessWidget {
                         'Continue with facebook',
                         style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.w600,
-                            fontSize: screenWidth * 0.03,
+                            fontSize: screenWidth * 0.04,
                             color: Colors.white),
                       ),
                     ],
@@ -189,7 +193,7 @@ class SigninScreen extends StatelessWidget {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  height: screenHeight * 0.07,
+                  height: 50,
                   width: screenWidth * 0.88,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 219, 68, 55),
@@ -201,7 +205,7 @@ class SigninScreen extends StatelessWidget {
                       SvgPicture.asset(
                         'assets/icons/gmail_icon.svg',
                         width: screenWidth * 0.04,
-                        height: screenWidth * 0.04,
+                        height: 27,
                       ),
                       SizedBox(
                         width: screenWidth * 0.03,
@@ -210,7 +214,7 @@ class SigninScreen extends StatelessWidget {
                         'Continue with Gmail',
                         style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.w600,
-                            fontSize: screenWidth * 0.03,
+                            fontSize: screenWidth * 0.04,
                             color: Colors.white),
                       ),
                     ],
@@ -225,13 +229,13 @@ class SigninScreen extends StatelessWidget {
                   style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
-                    fontSize: screenWidth * 0.03,
+                    fontSize: screenWidth * 0.040,
                   ),
                   children: [
                     TextSpan(
                         text: " Sign up",
                         style: GoogleFonts.montserrat(
-                          fontSize: screenWidth * 0.03,
+                          fontSize: screenWidth * 0.040,
                           fontWeight: FontWeight.w400,
                           color: Colors.purple,
                         ),
@@ -243,7 +247,8 @@ class SigninScreen extends StatelessWidget {
                                   builder: (context) => const SignupScreen()),
                             );
                           })
-                  ]))
+                  ])),
+              SizedBox(height: 20)
             ],
           ),
         ),

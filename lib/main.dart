@@ -1,4 +1,5 @@
-
+import 'package:absher_flutter/pages/cart_screen/cart_screen.dart';
+import 'package:absher_flutter/pages/homepage/home_screen.dart';
 import 'package:absher_flutter/pages/splash/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -12,14 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SplashScreen());
+        home: HomeScreen());
   }
 }
-

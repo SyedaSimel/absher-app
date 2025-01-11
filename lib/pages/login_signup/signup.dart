@@ -30,7 +30,7 @@ class SignupScreen extends StatelessWidget {
                 "Sign up",
                 style: GoogleFonts.montserrat(
                   fontWeight: FontWeight.w600,
-                  fontSize: screenWidth * 0.04,
+                  fontSize: screenWidth * 0.045,
                   color: const Color.fromARGB(255, 39, 57, 100),
                 ),
               ),
@@ -47,13 +47,13 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Full Name",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.040),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
                         'assets/icons/user_icon.svg',
-                        width: screenWidth * 0.02,
-                        height: screenWidth * 0.02,
+                        width: screenWidth * 0.03,
+                        height: screenWidth * 0.03,
                       ),
                     ),
                   ),
@@ -72,7 +72,7 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Email Address",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.040),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
@@ -95,13 +95,13 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Phone",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.040),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
                         'assets/icons/phone_icon.svg',
-                        width: screenWidth * 0.02,
-                        height: screenWidth * 0.02,
+                        width: screenWidth * 0.03,
+                        height: screenWidth * 0.03,
                       ),
                     ),
                   ),
@@ -120,13 +120,13 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Address",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.040),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
                         'assets/icons/pin_icon.svg',
-                        width: screenWidth * 0.02,
-                        height: screenWidth * 0.02,
+                        width: screenWidth * 0.03,
+                        height: screenWidth * 0.03,
                       ),
                     ),
                   ),
@@ -145,7 +145,32 @@ class SignupScreen extends StatelessWidget {
                       ),
                     ),
                     hintText: "Password",
-                    hintStyle: TextStyle(fontSize: screenWidth * 0.035),
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.040),
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/lock_icon.svg',
+                        width: screenWidth * 0.03,
+                        height: screenWidth * 0.03,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: screenHeight * 0.02),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(49.0),
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(1, 126, 126, 126),
+                        width: 1,
+                      ),
+                    ),
+                    hintText: "Confirm Password",
+                    hintStyle: TextStyle(fontSize: screenWidth * 0.040),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: SvgPicture.asset(
@@ -175,8 +200,8 @@ class SignupScreen extends StatelessWidget {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  height: screenHeight * 0.07,
-                  width: screenWidth * 0.88,
+                  height: 50,
+                  width: screenWidth * 0.9,
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                       colors: [
@@ -193,27 +218,27 @@ class SignupScreen extends StatelessWidget {
                       'Sign up',
                       style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w600,
-                        fontSize: screenWidth * 0.03,
+                        fontSize: screenWidth * 0.045,
                         color: Colors.white,
                       ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: screenHeight * 0.01),
               Text.rich(
                 TextSpan(
                   text: "Already have an account?",
                   style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
-                    fontSize: screenWidth * 0.03,
+                    fontSize: screenWidth * 0.040,
                   ),
                   children: [
                     TextSpan(
                       text: " Login",
                       style: GoogleFonts.montserrat(
-                        fontSize: screenWidth * 0.03,
+                        fontSize: screenWidth * 0.040,
                         fontWeight: FontWeight.w400,
                         color: Colors.purple,
                       ),
@@ -230,6 +255,9 @@ class SignupScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),
