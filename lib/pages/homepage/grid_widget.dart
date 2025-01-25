@@ -6,6 +6,7 @@ class GridWidgetBox extends StatelessWidget {
   final String text;
 
   const GridWidgetBox({
+    super.key,
     required this.imagePath,
     required this.text,
   });
@@ -16,8 +17,8 @@ class GridWidgetBox extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      height: screenHeight * 1.5,
-      width: screenWidth * 1.5,
+      height: screenHeight * 0.05, // Existing height
+      width: screenWidth * 0.2, // Existing width
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -25,24 +26,24 @@ class GridWidgetBox extends StatelessWidget {
         children: [
           // Image as the background
           ClipRRect(
-            borderRadius: BorderRadius.circular(10),
             child: Image.asset(
               imagePath,
               fit: BoxFit.contain,
-              width: double.infinity,
-              height: double.infinity,
+              height: 250,
+              width: 200,
+
+              // Keep the existing scaling
             ),
           ),
 
-          // Semi-transparent gradient overlay (purple shade with transparency)
+          // Gradient overlay on top of the image
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(9),
               gradient: const LinearGradient(
                 colors: [
                   Colors.transparent,
                   Color.fromARGB(255, 188, 55, 222),
-                  // Color.fromARGB(255, 120, 22, 145), // Fully transparent
                 ],
                 begin: Alignment.center,
                 end: Alignment.bottomCenter,
@@ -50,16 +51,16 @@ class GridWidgetBox extends StatelessWidget {
             ),
           ),
 
-          // Text at the bottom-left in white
+          // Text stacked on top of the gradient and image
           Positioned(
             left: 10,
-            bottom: 10,
+            bottom: 15,
             child: Text(
               text,
               style: GoogleFonts.montserrat(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
-                fontSize: 18,
+                fontSize: 20, // Existing font size
               ),
             ),
           ),

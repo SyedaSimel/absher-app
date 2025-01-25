@@ -1,5 +1,6 @@
 import 'package:absher_flutter/pages/cart_screen/cart_screen.dart';
 import 'package:absher_flutter/pages/notification_screen/notification_screen.dart';
+import 'package:absher_flutter/pages/profile_screen/balance_screen.dart';
 import 'package:absher_flutter/pages/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     CartScreen(),
     NotificationScreen(),
     ProfileScreen(),
+    BalanceScreen(),
   ];
 
   @override
@@ -81,288 +83,320 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    final isHorizontal =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
     // List of grid items
     final List<Map<String, String>> gridItems = [
       {"image": "assets/images/burger_img.jpg", "text": "Restaurant"},
       {"image": "assets/images/store_img.jpg", "text": "Store"},
       {"image": "assets/images/pharmacy_img.jpg", "text": "Pharmacy"},
-      {"image": "assets/images/service_img.jpg", "text": "Service"},
+      {"image": "assets/images/service_img.jpg", "text": "Services"},
     ];
 
     // List of top pick items
     final List<Map<String, String>> topPicktems = [
       {"image": "assets/images/past_order_img.png", "text": "Past Order"},
-      {"image": "assets/images/past_order_img.png", "text": "Offers"},
-      {"image": "assets/images/past_order_img.png", "text": "Happy Hour"},
-      {"image": "assets/images/past_order_img.png", "text": "Absha"},
+      {"image": "assets/images/offers.png", "text": "Offers"},
+      {"image": "assets/images/happy.png", "text": "Happy Hour"},
+      {"image": "assets/images/choices.png", "text": "Absha"},
     ];
 
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: screenHeight * 0.04,
-              left: screenWidth * 0.04,
-              right: screenWidth * 0.04,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: TextField(
-                      textAlignVertical: TextAlignVertical.center,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: SvgPicture.asset(
-                            'assets/icons/Pin_fill.svg',
-                            width: screenWidth * 0.04,
-                            height: screenWidth * 0.04,
-                          ),
-                        ),
-                        hintText: "Location",
-                        hintStyle: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.purple,
-                          fontSize: screenWidth * 0.045,
-                        ),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: screenWidth * 0.02), // Responsive spacing
-                IconButton(
-                  onPressed: () {
-                    // Add your logic here
-                  },
-                  icon: SvgPicture.asset(
-                    'assets/icons/bell_icon.svg',
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-// Spacing before the image
-          SizedBox(height: screenHeight * 0.01), // Adjust spacing dynamically
-
-// Image
-          Image.asset(
-            "assets/images/rolls_img.png",
-            width: screenWidth,
-            height: screenHeight * 0.3, // Set a maximum height dynamically
-            fit: BoxFit.cover, // Ensure the image covers its container
-          ),
-
-// Spacing between the image and the next text
-          SizedBox(height: screenHeight * 0.02),
-
-// Welcome Text
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-            child: Text(
-              "Welcome to Absher",
-              style: GoogleFonts.montserrat(
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-                fontSize: screenWidth * 0.05,
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: 10,
+                left: screenWidth * 0.04,
+                right: screenWidth * 0.04,
               ),
-            ),
-          ),
-
-          // Grid View Section
-          Padding(
-            padding: EdgeInsets.all(
-                MediaQuery.of(context).size.width * 0.03), // Dynamic padding
-            child: GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: (MediaQuery.of(context).size.width ~/
-                    180), // Adjust items per row
-                crossAxisSpacing:
-                    MediaQuery.of(context).size.width * 0.02, // Dynamic spacing
-                mainAxisSpacing: MediaQuery.of(context).size.height *
-                    0.02, // Dynamic spacing
-                childAspectRatio: 0.9, // Adjust aspect ratio of grid items
-              ),
-              itemCount: gridItems.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GridWidgetBox(
-                  imagePath: gridItems[index]["image"]!,
-                  text: gridItems[index]["text"]!,
-                );
-              },
-            ),
-          ),
-
-          // Top Picks Widget Section
-          Padding(
-            padding: EdgeInsets.symmetric(
-              // horizontal: MediaQuery.of(context).size.width * 0.01,
-              vertical: MediaQuery.of(context).size.height *
-                  0.01, // Reduced vertical padding
-            ),
-            child: SingleChildScrollView(
-              scrollDirection:
-                  Axis.horizontal, // Allow horizontal scrolling if needed
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: List.generate(
-                  topPicktems.length,
-                  (index) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                          // horizontal: MediaQuery.of(context).size.width *
-                          // 0.02, // Adjusted spacing
+                children: [
+                  Expanded(
+                    child: Material(
+                      elevation: 0.5, // Add light elevation
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.white,
+                      child: Container(
+                        height: 38,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: TextField(
+                          textAlignVertical: TextAlignVertical.center,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: SvgPicture.asset(
+                                'assets/icons/Pin_fill.svg',
+                                height: 10,
+                              ),
+                            ),
+                            hintText: "Location",
+                            hintStyle: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.purple,
+                              fontSize: screenWidth * 0.045,
+                            ),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 1.0, vertical: 10),
                           ),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width *
-                            0.25, // Ensure widgets fit within screen
-                        child: TopPicksWidget(
-                          imagePath: topPicktems[index]["image"]!,
-                          text: topPicktems[index]["text"]!,
                         ),
                       ),
-                    );
-                  },
+                    ),
+                  ),
+                  SizedBox(width: screenWidth * 0.02), // Responsive spacing
+                  IconButton(
+                    onPressed: () {
+                      // Add your logic here
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/bell_icon.svg',
+                      height: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Spacing before the image
+            SizedBox(height: screenHeight * 0.01), // Adjust spacing dynamically
+
+            // Image
+            Image.asset(
+              "assets/images/rolls_img.png",
+              width: isHorizontal
+                  ? screenWidth
+                  : screenWidth, // Adjust width for horizontal screens
+              height: isHorizontal
+                  ? screenHeight * 0.5 // Increase height for horizontal
+                  : screenHeight * 0.3, // Decrease height for vertical
+              fit: BoxFit.cover, // Ensure the image covers the container
+            ),
+
+            // Spacing between the image and the next text
+            SizedBox(height: screenHeight * 0.02),
+
+            // Welcome Text
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+              child: Text(
+                "Welcome to Absher",
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                  fontSize: screenWidth * 0.048,
                 ),
               ),
             ),
-          ),
 
-// "Restaurants nearby" section with adjusted spacing
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.05,
-              // vertical: MediaQuery.of(context).size.height * 0.015,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Restaurants nearby",
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontSize: MediaQuery.of(context).size.width * 0.05,
-                  ),
+            // Grid View Section
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width *
+                      0.04), // Dynamic padding
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: (MediaQuery.of(context).size.width ~/
+                      180), // Adjust items per row
+                  crossAxisSpacing: MediaQuery.of(context).size.width *
+                      0.02, // Dynamic spacing
+                  mainAxisSpacing: MediaQuery.of(context).size.height *
+                      0.02, // Dynamic spacing
+                  childAspectRatio: 0.9, // Adjust aspect ratio of grid items
                 ),
-                TextButton(
-                  onPressed: () {
-                    // Add your action here
-                  },
-                  child: Text(
-                    "See All",
-                    style: GoogleFonts.montserrat(
-                      fontSize: MediaQuery.of(context).size.width * 0.04,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.purple,
-                    ),
-                  ),
-                ),
-              ],
+                itemCount: gridItems.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GridWidgetBox(
+                    imagePath: gridItems[index]["image"]!,
+                    text: gridItems[index]["text"]!,
+                  );
+                },
+              ),
             ),
-          ),
 
-// Horizontal ListView for cards
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.height *
-                  0.02, // Responsive vertical spacing
-            ),
-            child: Container(
-              height: MediaQuery.of(context).size.height *
-                  0.25, // Responsive height for cards
-              child: ListView.builder(
+            // Top Picks Widget Section
+            Padding(
+              padding: EdgeInsets.symmetric(
+                // horizontal: MediaQuery.of(context).size.width * 0.01,
+                vertical: MediaQuery.of(context).size.height *
+                    0.01, // Reduced vertical padding
+              ),
+              child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    margin: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width *
-                          0.02, // Responsive spacing
-                    ),
-                    child: Card(
-                      elevation: 5.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+                // Allow horizontal scrolling if needed
+
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 13, bottom: 10),
+                        child: Text(
+                          "Top Picks",
+                          style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w600, fontSize: 20),
+                        ),
                       ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.03,
-                              vertical:
-                                  MediaQuery.of(context).size.height * 0.01,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Lorem Ipsum',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            0.045,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: List.generate(
+                          topPicktems.length,
+                          (index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.of(context).size.width *
+                                    0.005, // Adjusted spacing
+                              ),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width *
+                                    0.23, // Ensure widgets fit within screen
+                                child: TopPicksWidget(
+                                  imagePath: topPicktems[index]["image"]!,
+                                  text: topPicktems[index]["text"]!,
                                 ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      "assets/icons/Pin_fill.svg",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.045,
-                                      height:
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ]),
+              ),
+            ),
+
+            // "Restaurants nearby" section with adjusted spacing
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.04,
+                // vertical: MediaQuery.of(context).size.height * 0.015,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Restaurants nearby",
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: screenWidth * 0.047,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      // Add your action here
+                    },
+                    child: Text(
+                      "View All",
+                      style: GoogleFonts.montserrat(
+                        fontSize: screenWidth * 0.035,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.purple,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height *
+                    0.01, // Responsive vertical spacing
+              ),
+              child: Container(
+                height: MediaQuery.of(context).size.height *
+                    0.25, // Responsive height for cards
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width *
+                            0.02, // Responsive spacing
+                      ),
+                      child: Card(
+                        elevation: 0.5,
+                        color:
+                            Colors.white, // Set card background color to white
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.03,
+                                vertical:
+                                    MediaQuery.of(context).size.height * 0.01,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Lorem Ipsum',
+                                    style: GoogleFonts.montserrat(
+                                      color: Colors.black,
+                                      fontSize:
                                           MediaQuery.of(context).size.width *
                                               0.045,
-                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    SizedBox(
+                                  ),
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/icons/Pin_fill.svg",
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.01),
-                                    Text(
-                                      "Place Name",
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize:
+                                                0.045,
+                                        height:
                                             MediaQuery.of(context).size.width *
-                                                0.04,
+                                                0.045,
+                                        color: Colors.grey,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.01),
+                                      Text(
+                                        "Place Name",
+                                        style: GoogleFonts.montserrat(
+                                          color: Colors.grey,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.04,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(
-                                MediaQuery.of(context).size.width * 0.02),
-                            child: Stack(
+                            Stack(
                               children: [
+                                // Card Image
                                 ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderRadius: BorderRadius.circular(20.0),
                                   child: Image.asset(
                                     "assets/images/card_img.png",
                                     fit: BoxFit.cover,
-                                    width: double.infinity,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.75,
                                     height: MediaQuery.of(context).size.height *
-                                        0.15,
+                                        0.18,
                                   ),
                                 ),
+                                // Positioned Heart Icon
                                 Positioned(
                                   top:
                                       MediaQuery.of(context).size.height * 0.01,
@@ -371,24 +405,159 @@ class HomePage extends StatelessWidget {
                                   child: SvgPicture.asset(
                                     "assets/icons/heartfill_icon.svg",
                                     width: MediaQuery.of(context).size.width *
-                                        0.04,
+                                        0.05,
                                     height: MediaQuery.of(context).size.width *
-                                        0.04,
+                                        0.05,
                                     color: Colors.white,
+                                  ),
+                                ),
+                                // Positioned Star Rating and Text
+                                Positioned(
+                                  bottom: MediaQuery.of(context).size.height *
+                                      0.035,
+                                  left:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  child: Stack(
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/icons/rating_icon.svg",
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                        color: Colors.purple,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 2, left: 2),
+                                        child: SvgPicture.asset(
+                                          "assets/icons/star_icon.svg",
+                                          height: 14,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 3.2,
+                                        left: 20,
+                                        child: Text(
+                                          "4.6",
+                                          style: GoogleFonts.montserrat(
+                                            color: Colors.white,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.03,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                // Positioned Row for Delivery Information
+                                Positioned(
+                                  bottom:
+                                      MediaQuery.of(context).size.height * 0.01,
+                                  left:
+                                      MediaQuery.of(context).size.width * 0.03,
+                                  child: Row(
+                                    children: [
+                                      // Clock Icon and Text
+                                      SvgPicture.asset(
+                                        "assets/icons/greyclock_icon.svg",
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                        color: Colors.white,
+                                      ),
+                                      // SizedBox(
+                                      //     width: MediaQuery.of(context)
+                                      //             .size
+                                      //             .width *
+                                      //         0.02),
+                                      Text(
+                                        "40-50 Mins",
+                                        style: GoogleFonts.montserrat(
+                                          color: Colors.white,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.035,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.02),
+                                      // Distance Icon and Text
+                                      SvgPicture.asset(
+                                        "assets/icons/jumptime_icon.svg",
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                        color: Colors.white,
+                                      ),
+
+                                      Text(
+                                        "9.5 km",
+                                        style: GoogleFonts.montserrat(
+                                          color: Colors.white,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.035,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.04),
+                                      // Delivery Man Icon and Text
+                                      SvgPicture.asset(
+                                        "assets/icons/delman_icon.svg",
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                0.045,
+                                        color: Colors.white,
+                                      ),
+
+                                      Text(
+                                        "\$2",
+                                        style: GoogleFonts.montserrat(
+                                          color: Colors.white,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.035,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

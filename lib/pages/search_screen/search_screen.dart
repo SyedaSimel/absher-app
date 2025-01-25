@@ -19,21 +19,21 @@ class HorizontalCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin:
+          const EdgeInsets.symmetric(horizontal: 8.0), // Spacing between cards
       width: width,
-      margin: const EdgeInsets.symmetric(horizontal: 10.0),
+      height: height,
       child: Card(
-        elevation: 3.0,
+        elevation: 0.0, // No shadow
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(15.0), // Rounded corners
         ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15.0),
-          child: Image.asset(
-            imagePath,
-            fit: BoxFit.cover,
-            width: width,
-            height: height,
-          ),
+        clipBehavior: Clip.antiAlias, // Ensure the image is clipped to the card
+        child: Image.asset(
+          imagePath,
+          fit: BoxFit.cover, // Image fully covers the card
+          width: width,
+          height: height,
         ),
       ),
     );
@@ -65,7 +65,7 @@ class SearchScreen extends StatelessWidget {
   ];
 
   final List<String> horizontalImages = [
-    "assets/images/card1_img.png",
+    "assets/images/card2_img.png",
     "assets/images/card2_img.png",
     "assets/images/card3_img.png",
     "assets/images/card2_img.png",
@@ -77,127 +77,180 @@ class SearchScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: screenHeight * 0.04,
-              left: screenWidth * 0.04,
-              right: screenWidth * 0.04,
-            ),
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
-                  },
-                  icon: SvgPicture.asset(
-                    'assets/icons/back_icon.svg',
-                  ),
-                ),
-                SizedBox(width: screenWidth * 0.02),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: SvgPicture.asset(
-                          'assets/icons/searchpurple_icon.svg',
-                          width: screenWidth * 0.03,
-                          height: screenHeight * 0.03,
-                        ),
-                      ),
-                      hintText: "Search",
-                      hintStyle: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.purple,
-                        fontSize: screenWidth * 0.04,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      contentPadding:
-                          const EdgeInsets.symmetric(horizontal: 16.0),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                // bottom: screenHeight * 0.1,
+                top: screenHeight * 0.01,
+                left: screenWidth * 0.04,
+                right: screenWidth * 0.04,
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/back_icon.svg',
                     ),
                   ),
-                ),
-                SizedBox(width: screenWidth * 0.02),
-                IconButton(
-                  onPressed: () {
-                    // Add your logic here
-                  },
-                  icon: SvgPicture.asset(
-                    'assets/icons/bell_icon.svg',
+                  // SizedBox(width: screenWidth * 0.02),
+                  Expanded(
+                    child: Material(
+                      elevation: 1, // Add light elevation
+                      borderRadius: BorderRadius.circular(50),
+                      child: SizedBox(
+                        height: 38, // Reduced height
+                        child: TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: screenWidth * 0.019, vertical: 6),
+                              child: SvgPicture.asset(
+                                'assets/icons/searchpurple_icon.svg',
+                                width: screenWidth *
+                                    0.02, // Slightly increased size
+                                height: 5,
+                              ),
+                            ),
+                            hintText: "Search",
+                            hintStyle: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w500,
+                              color: Colors.purple,
+                              fontSize: 16.5,
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            filled: true,
+                            fillColor: Colors.white, // Set background color
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          ListView(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            children: tileData.map((data) {
-              return ListTile(
-                leading: Image.asset(
-                  data['image']!,
-                  width: screenWidth * 0.12,
-                  height: screenWidth * 0.12,
-                  fit: BoxFit.cover,
-                ),
-                title: Text(
-                  data['title']!,
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontSize: screenWidth * 0.045,
+
+                  // SizedBox(width: screenWidth * 0.02),
+                  IconButton(
+                    onPressed: () {
+                      // Add your logic here
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/bell_icon.svg',
+                    ),
                   ),
-                ),
-                subtitle: Text(
-                  data['subtitle']!,
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey,
-                    fontSize: screenWidth * 0.035,
-                  ),
-                ),
-              );
-            }).toList(),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: screenWidth * 0.04,
-              vertical: screenHeight * 0.02,
-            ),
-            child: Text(
-              "Top Searched",
-              style: GoogleFonts.montserrat(
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-                fontSize: screenWidth * 0.05,
+                ],
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
-            height: screenHeight * 0.25, // Adjusted height
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: horizontalImages.length,
-              itemBuilder: (context, index) {
-                return HorizontalCardWidget(
-                  imagePath: horizontalImages[index],
-                  width: screenWidth * 0.4, // Responsive width
-                  height: screenHeight * 0.2, // Responsive height
-                );
-              },
+            SizedBox(
+              height: 10,
             ),
-          ),
-        ],
+            ListView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              children: tileData.asMap().entries.map((entry) {
+                final index = entry.key;
+                final data = entry.value;
+
+                return ListTile(
+                  leading: index == tileData.length - 1
+                      ? Container(
+                          width: 60, // Size of the circle
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.white, // White background
+                            shape: BoxShape.circle, // Circular shape
+                            border: Border.all(
+                              color: Colors.grey, // Border color
+                              width: 1,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "#",
+                              style: TextStyle(
+                                color: Color.fromARGB(
+                                    255, 92, 92, 92), // Grey text color
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30, // Font size
+                              ),
+                            ),
+                          ),
+                        )
+                      : Image.asset(
+                          data['image']!,
+                          width: 55,
+                          height: 55,
+                          fit: BoxFit.cover,
+                        ),
+                  title: index == tileData.length - 1
+                      ? Text(
+                          "#treandy", // Custom title for the last tile
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w500, // Bold text
+                            color: Colors.black, // Purple color
+                            fontSize: 16, // Font size
+                          ),
+                        )
+                      : Text(
+                          data['title']!,
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
+                        ),
+                  subtitle: Text(
+                    data['subtitle']!,
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
+                      fontSize: 14,
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: screenWidth * 0.04,
+                vertical: screenHeight * 0.02,
+              ),
+              child: Text(
+                "Top Searched",
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 92, 92, 92),
+                  fontSize: screenWidth * 0.05,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: screenHeight * 0.0),
+              height: screenHeight * 0.25, // Adjusted height
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: horizontalImages.length,
+                itemBuilder: (context, index) {
+                  return HorizontalCardWidget(
+                    imagePath: horizontalImages[index],
+
+                    width: screenWidth * 0.4, // Responsive width
+                    height: screenHeight * 0.2, // Responsive height
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
