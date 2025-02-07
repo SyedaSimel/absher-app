@@ -1,3 +1,4 @@
+import 'package:absher_flutter/pages/cart_screen/track_screen.dart';
 import 'package:absher_flutter/pages/homepage/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -268,7 +269,13 @@ class CompOrderScreen extends StatelessWidget {
                 // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TrackScreen()),
+                        );
+                      },
                     child: Text(
                       "Track",
                       style: GoogleFonts.montserrat(
